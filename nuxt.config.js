@@ -20,19 +20,19 @@ export default {
         rel: 'stylesheet',
         href:
           'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
-      },
-      {
-        rel: 'stylesheet',
-        href:
-          'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css'
       }
+      // {
+      //   rel: 'stylesheet',
+      //   href:
+      //     'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css'
+      // }
     ]
   },
 
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: '~/components/loading.vue',
 
   /*
    ** Global CSS
@@ -76,7 +76,7 @@ export default {
     redirect: {
       login: '/login',
       logout: '/login',
-      home: '/',
+      home: '/course',
       user: '/profile'
     }
   },

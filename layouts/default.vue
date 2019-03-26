@@ -1,10 +1,10 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <Toolbar v-if="!hide" />
     <v-content>
       <nuxt />
     </v-content>
-  </div>
+  </v-app>
 </template>
 
 <script>
