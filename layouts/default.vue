@@ -1,16 +1,23 @@
 <template>
-  <div>
-    <Navbar />
-    <nuxt />
+  <div id="app">
+    <Toolbar v-if="!hide" />
+    <v-content>
+      <nuxt />
+    </v-content>
   </div>
 </template>
 
 <script>
-import Navbar from '~/components/Navbar'
+import Toolbar from '~/components/Toolbar'
 
 export default {
   components: {
-    Navbar
+    Toolbar
+  },
+  computed: {
+    hide() {
+      return this.$route.path === '/login' || this.$route.path === '/register'
+    }
   }
 }
 </script>

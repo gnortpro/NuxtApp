@@ -80,38 +80,64 @@
       <v-btn icon>
         <v-icon>notifications</v-icon>
       </v-btn>
-      <v-btn icon large>
-        <v-avatar size="32px" tile>
-          <img
-            src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
-            alt="Vuetify"
-          />
-        </v-avatar>
-      </v-btn>
+
+      <v-menu transition="slide-y-transition" bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn icon large class="purple" color="primary" dark v-on="on">
+            <v-avatar size="32px" tile>
+              <img
+                src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
+                alt="Vuetify"
+              />
+            </v-avatar>
+          </v-btn>
+        </template>
+        <v-list v-if="isAuthenticated">
+          <v-list-tile>
+            <nuxt-link class="navbar-item" to="/profile"
+              ><v-list-tile-title>My Profile </v-list-tile-title></nuxt-link
+            >
+          </v-list-tile>
+
+          <v-list-tile>
+            <a class="navbar-item" @click="logout">Logout </a>
+          </v-list-tile>
+        </v-list>
+        <v-list v-else>
+          <v-list-tile>
+            <nuxt-link class="navbar-item" to="/register"
+              ><v-list-tile-title>Register </v-list-tile-title></nuxt-link
+            >
+          </v-list-tile>
+          <v-list-tile>
+            <nuxt-link class="navbar-item" to="/login"
+              ><v-list-tile-title>Log In </v-list-tile-title></nuxt-link
+            >
+          </v-list-tile>
+        </v-list>
+      </v-menu>
     </v-toolbar>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  data: () => ({
-    dialog: false,
-    drawer: null,
-    items: [
-      { icon: 'home', text: 'Home', link: 'home' },
-      { icon: 'people', text: 'Coach Zone' },
-      {
-        icon: 'keyboard_arrow_up',
-        'icon-alt': 'keyboard_arrow_down',
-        text: 'Native 1 to 1',
-        model: false,
-        children: [{ text: 'Native Zone', icon: 'history', link: 'room' }]
-      },
-      { icon: 'help', text: 'Quizzes' },
-      { icon: 'photo', text: 'FlashCards' },
-      { icon: 'settings', text: 'Support' }
-    ]
-  })
+  data() {
+    return {
+      dialog: false,
+      drawer: null
+    }
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser'])
+  },
+  methods: {
+    async logout() {
+      await this.$auth.logout()
+    }
+  }
 }
 </script>
 

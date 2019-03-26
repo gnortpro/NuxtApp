@@ -68,10 +68,16 @@ export default {
       local: {
         endpoints: {
           login: { url: 'login', method: 'post', propertyName: 'data.token' },
-          user: { url: 'me', method: 'get', propertyName: 'data' },
+          user: { url: 'users/2', method: 'get', propertyName: 'data' },
           logout: false
         }
       }
+    },
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      home: '/',
+      user: '/profile'
     }
   },
   /*

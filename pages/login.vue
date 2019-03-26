@@ -12,8 +12,8 @@
               <label class="label">Email</label>
               <div class="control">
                 <input
-                  type="email"
                   v-model="email"
+                  type="email"
                   class="input"
                   name="email"
                 />
@@ -23,8 +23,8 @@
               <label class="label">Password</label>
               <div class="control">
                 <input
-                  type="password"
                   v-model="password"
+                  type="password"
                   class="input"
                   name="password"
                 />

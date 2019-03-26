@@ -5,11 +5,11 @@
       <div class="content">
         <p>
           <strong>Username:</strong>
-          {{ loggedInUser.username }}
+          {{ loggedInUser.first_name }}
         </p>
         <p>
           <strong>Email:</strong>
-          {{ loggedInUser.email }}
+          {{ loggedInUser.last_name }}
         </p>
       </div>
     </div>
