@@ -1,21 +1,16 @@
 <template>
   <div class="col-md-12">
-    <router-link
-      :to="{ name: 'single-course', params: { ID: courseDetail.ID } }"
-    >
+    <nuxt-link :to="'/course/' + course.id">
       <v-card class="card-course">
         <div class="row">
           <div class="col-md-3 justify-center">
-            <v-img
-              class="course-thumbnail"
-              :src="courseDetail.thumbnail"
-            ></v-img>
+            <v-img class="course-thumbnail" :src="course.thumbnail"></v-img>
           </div>
           <div class="col-md-6">
             <div class="course-title justify-left">
-              {{ courseDetail.post_title }}
+              {{ course.post_title }}
             </div>
-            <p class="course-excerpt">{{ courseDetail.post_excerpt }}</p>
+            <p class="course-excerpt">{{ course.post_excerpt }}</p>
           </div>
           <div class="col-md-3">
             <p class="course-progress text-center">10 / 11 lessons completed</p>
@@ -25,7 +20,7 @@
           </div>
         </div>
       </v-card>
-    </router-link>
+    </nuxt-link>
   </div>
 </template>
 
@@ -33,8 +28,16 @@
 import { mapState } from 'vuex'
 export default {
   props: {
-    courseDetail: Object
-  }
+    course: {
+      type: Object,
+      default: null
+    }
+  },
+  created() {
+    this.$store.dispatch('getCourseDetails', this.$route.params.id)
+  },
+  // eslint-disable-next-line vue/order-in-components
+  computed: mapState(['course'])
 }
 </script>
 

@@ -60,14 +60,23 @@ export default {
    ** Axios module configuration
    */
   axios: {
-    baseURL: 'https://reqres.in/api'
+    withCredentials: false, // This is the default
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    baseURL: 'https://blog.trongggg.com/wp-json/'
     // See https://github.com/nuxt-community/axios-module#options
   },
   auth: {
     strategies: {
       local: {
         endpoints: {
-          login: { url: 'login', method: 'post', propertyName: 'data.token' },
+          login: {
+            url: 'login/login',
+            method: 'post',
+            propertyName: 'data.token'
+          },
           user: { url: 'users/2', method: 'get', propertyName: 'data' },
           logout: false
         }
